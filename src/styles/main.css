@@ -1,0 +1,143 @@
+:root{
+  --bg-start:#071018;
+  --bg-end:#0f2430;
+  --card:#0b1220;
+  --muted:#9aa4b2;
+  --accent:#ff4d4f;
+  --accent-2:#ff7a66;
+  --glass: rgba(255,255,255,0.03);
+  --max-width:1100px;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  /* Use a single fixed gradient as the base to avoid visible seams/banding when stacking translucent sections */
+  background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  background-attachment: fixed;
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+}
+
+.container{
+  width:calc(100% - 32px);
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:32px 16px;
+}
+
+/* Header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50; /* ensure header is above content */
+  /* Use a slightly more opaque solid color instead of a translucent gradient to avoid banding */
+  background: rgba(8,12,16,0.94);
+  /* remove heavy backdrop-filter that can create inconsistent rendering on some GPUs/browsers */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  padding:8px 0;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.brand{
+  font-weight:700;
+  font-family:Montserrat, Inter;
+  letter-spacing:0.4px;
+  color:var(--accent);
+}
+.nav a{
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:18px;
+  font-size:0.95rem;
+}
+.nav a:hover{color:#fff}
+
+/* Hero */
+.hero{
+  padding:64px 0;
+  /* remove large radial accents that can create visible seams in some GPUs/browsers */
+  background: transparent;
+  /* keep a very subtle divider without creating a heavy band */
+  border-bottom: 1px solid rgba(255,255,255,0.015);
+}
+.hero-inner{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+.hero h1{
+  margin:0;
+  font-family:Montserrat, Inter;
+  font-size:2.1rem;
+  letter-spacing:-0.6px;
+}
+.lead{color:var(--muted);max-width:60ch}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.95rem}
+.btn.primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;
+  box-shadow:0 6px 24px rgba(255,77,79,0.12), 0 1px 0 rgba(255,255,255,0.02) inset;
+}
+.btn.ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  color:var(--muted);
+}
+
+/* Manifesto layout */
+.manifesto{
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:28px;
+  align-items:start;
+  padding:48px 0;
+  /* ensure the grid area itself does not introduce additional layering artifacts */
+  background: transparent;
+}
+.manifesto article{
+  background: rgba(7,13,20,0.75); /* slightly opaque, matches overall palette */
+  padding:28px;
+  border-radius:var(--radius);
+  box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.manifesto h2{margin-top:0}
+.manifesto p{color:var(--muted)}
+.note{font-weight:600;color:#ffd7d7}
+.actions-list{margin:10px 0 20px 1.1rem;color:var(--muted)}
+
+.card{
+  background: rgba(7,13,20,0.72);
+  border-radius:12px;
+  padding:18px;
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,0.02);
+}
+
+/* Footer */
+.site-footer{
+  border-top:1px solid rgba(255,255,255,0.02);
+  padding:28px 0;
+  color:var(--muted);
+  font-size:0.9rem;
+  /* soften footer gradient so it doesn't produce a hard band when scrolled into view */
+  background: linear-gradient(180deg, transparent, rgba(2,6,23,0.08));
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .manifesto{grid-template-columns:1fr; padding:28px 0}
+  .nav{display:none}
+  .hero h1{font-size:1.6rem}
+  .container{padding:20px}
+}
